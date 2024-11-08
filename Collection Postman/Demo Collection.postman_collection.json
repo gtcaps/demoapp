@@ -1,0 +1,55 @@
+{
+	"info": {
+		"_postman_id": "aca0e641-4976-49d6-9764-6b0fd9c3f37c",
+		"name": "Demo Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9716970"
+	},
+	"item": [
+		{
+			"name": "insertarPrestamo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"pedro\",\n    \"dpi\": \"2020\",\n    \"monto\": 43,\n    \"cuotas\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8093/prestamos",
+					"host": [
+						"localhost"
+					],
+					"port": "8093",
+					"path": [
+						"prestamos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "allPrestamos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8093/allPrestamos",
+					"host": [
+						"localhost"
+					],
+					"port": "8093",
+					"path": [
+						"allPrestamos"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
