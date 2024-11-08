@@ -1,0 +1,73 @@
+
+
+@if (prestamoData | async; as resultObject) {
+
+   <div class="table-container">
+  
+    <h2>Prestamos</h2>
+
+    <div class="inputForm">
+        <input type="text" placeholder="Nombre" [(ngModel)]="nombre">
+        <input type="text" [minLength]="13" maxlength="13" placeholder="DPI" [(ngModel)]="dpi">
+        <input type="number" [min]="1" placeholder="Monto" [(ngModel)]="monto">
+        <input type="number" min="1" placeholder="Cuotas" [(ngModel)]="cuotas">
+        <button (click)="insertarPrestamo()" >Insertar</button>
+    </div>
+    
+    
+    
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>DPI</th>
+                    <th>Monto</th>
+                    <th>Cuotas</th>
+                    <th>Fecha</th>
+                    <th>Plan de Pagos</th>
+                </tr>
+            </thead>
+            @for (prestamo of resultObject.data; track prestamo.id) {
+                <tbody>
+                    <tr>
+                        <td>{{ prestamo.id }}</td>
+                        <td>{{ prestamo.nombre}}</td>
+                        <td>{{ prestamo.dpi}}</td>
+                        <td>{{ prestamo.monto }}</td>
+                        <td>{{ prestamo.cuotas }}</td>
+                        <td>{{ prestamo.fecha | date: 'dd/MM/yyyy' }}</td>
+                        <td><button class="btn btn-lg btn-outline-primary" (click)="getPlan(prestamo)">Plan</button></td>
+                    </tr>
+                </tbody>
+            }
+        </table>
+
+    
+  </div>
+
+  @if (cuota > 0) {
+    <div class="modalx">
+        <button (click)="closePlan()">Cerrar</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>Cuota - </th>
+                    <th>Fecha de Pago - </th>
+                    <th>Monto - </th>
+                </tr>
+            </thead>
+            @for(fecha of fechas; track $index; let idx = $index) {
+                <tr>
+                    <td>Cuota {{idx}} - </td>
+                    <td>{{ fecha }} - </td>
+                    <td>{{ cuota }}</td>
+                </tr>
+            }
+        </table>
+    
+    </div>
+  }
+
+}
